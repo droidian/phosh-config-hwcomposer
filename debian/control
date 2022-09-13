@@ -11,6 +11,6 @@ Package: phosh-config-hwcomposer
 Architecture: all
 Pre-Depends: phosh, libhybris
 Depends: ${misc:Depends},
-         halium-wrappers,
+         halium-wrappers (>= 10),
 Description: APT configurations for droidian
  This package contains configurations required to start phosh on hwcomposer
