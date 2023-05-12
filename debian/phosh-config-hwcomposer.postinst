@@ -1,5 +1,22 @@
 #!/bin/sh
 
+systemdenable() {
+	# This will only remove masks created by d-s-h on package removal.
+	deb-systemd-helper unmask 'phosh.service' >/dev/null || true
+
+	# was-enabled defaults to true, so new installations run enable.
+
+	if deb-systemd-helper --quiet was-enabled 'phosh.service'; then
+		# Enables the unit on first installation, creates new
+		# symlinks on upgrades if the unit file has changed.
+		deb-systemd-helper enable 'phosh.service' >/dev/null || true
+	else
+		# Update the statefile to add new symlinks (if any), which need to be
+		# cleaned up on purge. Also remove old symlinks.
+		deb-systemd-helper update-state 'phosh.service' >/dev/null || true
+	fi
+}
+
 configure() {
 	# Allow upgrading on legacy rootfses
 	if getent passwd mobian > /dev/null; then
@@ -14,6 +31,10 @@ EOF
 
 case "$1" in
 	"configure")
+		systemdenable
 		configure
+		;;
+	"abort-upgrade"|"abort-deconfigure"|"abort-remove")
+		systemdenable
 		;;
 esac
