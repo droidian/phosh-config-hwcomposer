@@ -1,3 +1,2 @@
 phosh.service.d/* /etc/systemd/system/phosh.service.d/
 android-service@hwcomposer.service.d/* /etc/systemd/system/android-service@hwcomposer.service.d/
-user/* /usr/lib/systemd/user/
