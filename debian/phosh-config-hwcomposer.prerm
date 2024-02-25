@@ -2,6 +2,7 @@
 
 remove() {
 	rm -f /etc/systemd/system/phosh.service.d/90-force-legacy-user.conf
+	rm -f /etc/systemd/system/android-service@hwcomposer.service.d/20-phosh.conf
 }
 
 case "$1" in
