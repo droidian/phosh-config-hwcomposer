@@ -1,0 +1,4 @@
+rm_conffile /etc/systemd/system/phosh.service.d/40-droid-wait.conf 14~
+rm_conffile /etc/systemd/system/phosh.service.d/30-force-user.conf 14~
+rm_conffile /etc/systemd/system/phosh.service.d/20-wlroots-hwc-env.conf 14~
+rm_conffile /etc/systemd/system/android-service@hwcomposer.service.d/20-phosh.conf 14~
